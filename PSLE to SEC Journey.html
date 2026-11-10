@@ -1,0 +1,437 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>PSLE to SEC Journey</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Schibsted+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: a five-step journey read top to bottom. Each step feeds the next, and the three subject levels (G1, G2, G3) carry colour all the way through. One yellow highlighter marks whatever the parent has chosen. */
+:root {
+  --bg: #F2F5F8;
+  --surface: #FFFFFF;
+  --ink: #13202C;
+  --muted: #4F5E6C;
+  --line: #D3DCE4;
+  --g3: #1F4FBF;
+  --g2: #0F7B6C;
+  --g1: #A85A05;
+  --hl: #FFD84D;
+  --hl-ink: #13202C;
+  --good: #0F7B4C;
+  --bad: #B3261E;
+  --display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", sans-serif;
+  --body: "Schibsted Grotesk", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E161E; --surface: #16212B; --ink: #E8EEF3; --muted: #9DACBA; --line: #2A3947;
+    --g3: #86A8FF; --g2: #4FD1BD; --g1: #F2A650; --good: #5FD39A; --bad: #FF8A80;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0E161E; --surface: #16212B; --ink: #E8EEF3; --muted: #9DACBA; --line: #2A3947;
+  --g3: #86A8FF; --g2: #4FD1BD; --g1: #F2A650; --good: #5FD39A; --bad: #FF8A80;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.55;
+  padding-block: 0 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.wrap { max-width: 780px; margin-inline: auto; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; line-height: 1.1; margin: 0; }
+h2 { font-size: clamp(1.5rem, 4.5vw, 2rem); font-weight: 800; letter-spacing: -0.01em; }
+h3 { font-size: 1.05rem; font-weight: 600; }
+p { margin: 0; max-width: 65ch; }
+a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible, summary:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+.mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.eyebrow { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.note { font-size: 0.9rem; color: var(--muted); }
+mark { background: var(--hl); color: var(--hl-ink); padding: 0 0.15em; border-radius: 3px; }
+
+/* step bar */
+nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 11; background: var(--bg); border-bottom: 1px solid var(--line); margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding-inline: max(16px, env(safe-area-inset-left, 0px)); }
+nav .wrap { display: flex; gap: 6px; overflow-x: auto; padding-block: 10px; scrollbar-width: none; }
+nav a { white-space: nowrap; font-size: 0.85rem; font-weight: 500; text-decoration: none; padding: 5px 12px 5px 6px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); display: inline-flex; align-items: center; gap: 8px; }
+nav a b { font-family: var(--mono); font-size: 0.75rem; width: 22px; height: 22px; border-radius: 50%; background: var(--ink); color: var(--bg); display: inline-grid; place-items: center; }
+nav a:hover { background: var(--hl); color: var(--hl-ink); border-color: var(--hl); }
+
+header { padding-block: 40px 28px; display: grid; gap: 16px; }
+h1 { font-size: clamp(2.2rem, 9vw, 3.6rem); font-weight: 800; letter-spacing: -0.02em; }
+.lede { font-size: 1.15rem; color: var(--muted); }
+section { padding-block: 36px; border-top: 1px solid var(--line); display: grid; gap: 18px; scroll-margin-top: 64px; }
+
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: grid; gap: 16px; }
+.als { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+label.field { display: grid; gap: 4px; font-size: 0.85rem; color: var(--muted); }
+select { font: inherit; font-family: var(--mono); font-weight: 600; padding: 9px 10px; min-height: 44px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); width: 100%; }
+.total { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.total .big { font-family: var(--display); font-weight: 800; font-size: 2.4rem; line-height: 1; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-family: var(--mono); font-weight: 600; font-size: 0.9rem; padding: 7px 12px; min-height: 44px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; display: inline-flex; flex-direction: column; align-items: flex-start; justify-content: center; line-height: 1.2; text-align: left; }
+.chip small { font-family: var(--body); font-weight: 400; font-size: 0.72rem; color: var(--muted); }
+.chip:hover { border-color: var(--ink); }
+.chip[aria-pressed="true"] { background: var(--hl); color: var(--hl-ink); border-color: var(--hl-ink); }
+.chip[aria-pressed="true"] small { color: var(--hl-ink); }
+
+.lv { font-family: var(--mono); font-weight: 600; }
+.lv-1 { color: var(--g1); } .lv-2 { color: var(--g2); } .lv-3 { color: var(--g3); }
+.tag { font-family: var(--mono); font-weight: 600; font-size: 0.8rem; padding: 3px 9px; border-radius: 999px; border: 1px solid currentColor; white-space: nowrap; }
+
+.rows { display: grid; gap: 10px; }
+.row { display: grid; gap: 8px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; min-width: 0; }
+.row .top { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.row .name { font-weight: 600; }
+.row .sub { font-size: 0.88rem; color: var(--muted); }
+.common { display: flex; flex-wrap: wrap; gap: 6px; }
+.common span { font-size: 0.82rem; padding: 3px 10px; border-radius: 999px; background: var(--bg); border: 1px solid var(--line); }
+
+input[type="range"] { width: 100%; min-height: 32px; accent-color: var(--ink); }
+.marks { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px; }
+.marks output { font-family: var(--mono); font-weight: 600; min-width: 3.6ch; text-align: right; }
+.btn { font: inherit; font-weight: 600; font-size: 0.92rem; padding: 9px 14px; min-height: 44px; border-radius: 10px; border: 1px solid var(--hl-ink); background: var(--hl); color: var(--hl-ink); cursor: pointer; }
+.btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn.ghost:hover { border-color: var(--ink); }
+.btns { display: flex; flex-wrap: wrap; gap: 8px; }
+.flow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-family: var(--mono); font-size: 0.9rem; }
+.flow .arrow { color: var(--muted); }
+
+.counts { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.paths { display: grid; gap: 8px; }
+.path { display: grid; grid-template-columns: 1fr auto; gap: 4px 14px; align-items: center; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; }
+.path .pname { font-weight: 600; }
+.path .rule { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); }
+.path .hint { grid-column: 1 / -1; font-size: 0.88rem; padding: 8px 12px; background: var(--bg); border-radius: 8px; }
+.badge { grid-row: 1 / span 2; grid-column: 2; font-family: var(--mono); font-size: 0.78rem; font-weight: 600; padding: 4px 10px; border-radius: 999px; border: 1px solid currentColor; white-space: nowrap; }
+.path.open .badge { color: var(--good); }
+.path.closed { opacity: 0.8; }
+.path.closed .badge { color: var(--muted); }
+.warn { padding: 10px 14px; border-left: 3px solid var(--bad); background: var(--bg); border-radius: 0 8px 8px 0; font-size: 0.92rem; }
+footer { padding-top: 32px; border-top: 1px solid var(--line); display: grid; gap: 12px; font-size: 0.92rem; }
+footer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
+@media (prefers-reduced-motion: no-preference) { .chip, nav a, .btn { transition: background 0.15s, border-color 0.15s; } }
+</style>
+
+<nav aria-label="Journey steps"><div class="wrap">
+  <a href="#s1"><b>1</b>PSLE</a>
+  <a href="#s2"><b>2</b>Start of Sec 1</a>
+  <a href="#s3"><b>3</b>Lower secondary</a>
+  <a href="#s4"><b>4</b>Upper secondary</a>
+  <a href="#s5"><b>5</b>After the SEC</a>
+</div></nav>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">For parents &middot; Full Subject-Based Banding</div>
+  <h1>From PSLE to <mark>SEC</mark>, step by step</h1>
+  <p class="lede">Try your child's PSLE results and see the subject levels they could start with, how levels can change, and which pathways open after the SEC exams. Every choice you make here carries into the next step.</p>
+  <p class="note">This is an illustration, not an MOE tool. Schools set their own timing and criteria within MOE's framework, so always confirm with your child's school.</p>
+</header>
+
+<section id="s1">
+  <div class="eyebrow">Step 1 of 5</div>
+  <h2>PSLE results to posting group</h2>
+  <p>Choose the PSLE Achievement Level (AL) for each subject. The four ALs add up to the PSLE score, which sets the posting group.</p>
+  <div class="panel">
+    <div class="als" id="als"></div>
+    <div class="total"><span class="eyebrow">PSLE score</span><span class="big mono" id="total">0</span></div>
+    <div id="pgOut" class="rows" aria-live="polite"></div>
+    <p class="note">Posting groups (PG1, PG2, PG3) are used only to get into secondary school and to guide starting subject levels. They do not decide the pathway. This page uses Standard-level ALs. If your child sat Foundation-level subjects, ask the school about the options.</p>
+  </div>
+</section>
+
+<section id="s2">
+  <div class="eyebrow">Step 2 of 5</div>
+  <h2>Subject levels at the start of Sec 1</h2>
+  <p>Most subjects start at the level for the posting group. Your child's ALs may allow some subjects at a more demanding level (MDL) or less demanding level (LDL). Pick the starting level for each subject.</p>
+  <div class="panel">
+    <div class="rows" id="startRows"></div>
+    <div>
+      <h3>Taken together in mixed form classes</h3>
+      <div class="common" style="margin-top:8px"><span>Art</span><span>Character and Citizenship Education</span><span>Design and Technology</span><span>Food and Consumer Education</span><span>Music</span><span>Physical Education</span></div>
+      <p class="note" style="margin-top:8px">These common curriculum subjects take about one-third of curriculum time.</p>
+    </div>
+  </div>
+</section>
+
+<section id="s3">
+  <div class="eyebrow">Step 3 of 5</div>
+  <h2>Moving between levels in lower secondary</h2>
+  <p>Levels are not fixed. In school-based results, 75% or more in a subject typically gives the option to offer it at the next more demanding level from the following semester. Move the slider to try a result.</p>
+  <div class="panel">
+    <div class="rows" id="moveRows"></div>
+    <div class="btns"><button class="btn ghost" id="resetMoves" type="button">Reset to starting levels</button></div>
+    <p class="note">Moving up is the family's choice, and schools set the timing. Some schools ask students to stay with a more demanding subject until the end of Sec 2. Moving down is decided on performance and a holistic review, with no fixed mark. The try-lower button only shows what a lower level would mean for later steps. Students can move back up later.</p>
+  </div>
+</section>
+
+<section id="s4">
+  <div class="eyebrow">Step 4 of 5</div>
+  <h2>Subjects in upper secondary</h2>
+  <p>Students take English, Mother Tongue, Humanities, Mathematics and Science, plus electives. Each is offered at the level set in step 3. Add up to two electives and choose their levels.</p>
+  <div class="panel">
+    <div class="rows" id="upperRows"></div>
+    <div class="rows" id="electRows"></div>
+    <p class="note">Electives include Computing (offered at G1, G2 and G3), Additional Mathematics, Art and Design and Technology. Which electives and levels are available depends on the school. Students taking mainly G1 subjects must take Computing and/or Science. Eligible students can offer Higher Mother Tongue instead of Mother Tongue.</p>
+  </div>
+</section>
+
+<section id="s5">
+  <div class="eyebrow">Step 5 of 5</div>
+  <h2>Pathways after the SEC exams</h2>
+  <p>From 2028, students apply through the Post-Secondary Admissions Exercise after they receive SEC results. Here is what the mix of levels from step 4 could open.</p>
+  <div class="panel">
+    <div class="counts" id="counts" aria-live="polite"></div>
+    <div class="paths" id="pathList" aria-live="polite"></div>
+    <p class="note">This shows whether the mix of levels meets the general entry rule. Posting depends on the grades themselves and on each year's cut-off score. Courses also have their own requirements, for example English and Mathematics grades, on MOE CourseFinder. G3 grades are mapped down to G2 for pathways that count G2 subjects.</p>
+  </div>
+</section>
+
+<footer>
+  <h3>Sources</h3>
+  <ul>
+    <li><a href="https://www.moe.gov.sg/microsites/psle-fsbb/full-subject-based-banding/secondary-school-experience.html">MOE: Secondary school experience under Full SBB</a>, for posting groups, starting levels and subject options.</li>
+    <li><a href="https://www.moe.gov.sg/post-secondary/admissions/pse">MOE: Post-Secondary Admissions Exercise</a>, for admission criteria.</li>
+    <li><a href="https://www.moe.gov.sg/coursefinder">MOE CourseFinder</a>, for course requirements.</li>
+    <li><a href="https://www.seab.gov.sg/secondary-education-certificate-sec/">SEAB: Secondary Education Certificate (SEC)</a>, for grading.</li>
+    <li>The 75% mark for moving levels and the practice of continuing an MDL subject to the end of Sec 2 come from secondary school briefing slides. They can differ between schools.</li>
+  </ul>
+  <p class="note">Prototype for parent briefings. Not an MOE resource. Checked against public sources on 24 Oct 2026.</p>
+</footer>
+</div>
+
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var SUBJ = [
+    { k: "EL", n: "English Language" },
+    { k: "MTL", n: "Mother Tongue" },
+    { k: "MA", n: "Mathematics" },
+    { k: "SCI", n: "Science" },
+    { k: "HUM", n: "Humanities" }
+  ];
+  var AL_SUBJ = [["EL", "English"], ["MTL", "Mother Tongue"], ["MA", "Mathematics"], ["SCI", "Science"]];
+  var ELECTIVES = ["None", "Computing", "Additional Mathematics", "Art", "Design and Technology", "Other elective"];
+  var state = {
+    al: { EL: 4, MTL: 5, MA: 4, SCI: 5 },
+    pgChoice: 0, base: 3,
+    start: {}, cur: {},
+    marks: { EL: 70, MTL: 70, MA: 70, SCI: 70, HUM: 70 },
+    elect: [{ s: "Computing", lv: 3 }, { s: "None", lv: 3 }]
+  };
+  function lvName(n) { return "G" + n; }
+  function lvSpan(n) { return '<span class="lv lv-' + n + '">' + lvName(n) + "</span>"; }
+
+  /* Step 1 */
+  function buildALs() {
+    var html = "";
+    AL_SUBJ.forEach(function (s) {
+      var opts = "";
+      for (var a = 1; a <= 8; a++) opts += '<option value="' + a + '"' + (state.al[s[0]] === a ? " selected" : "") + ">AL " + a + "</option>";
+      html += '<label class="field" for="al-' + s[0] + '">' + s[1] + '<select id="al-' + s[0] + '" data-al="' + s[0] + '">' + opts + "</select></label>";
+    });
+    $("als").innerHTML = html;
+  }
+  function postingOptions(total, el, ma) {
+    if (total <= 20) return { opts: [{ pg: 3, lv: 3 }] };
+    if (total <= 22) return { opts: [{ pg: 3, lv: 3 }, { pg: 2, lv: 2 }] };
+    if (total <= 24) return { opts: [{ pg: 2, lv: 2 }] };
+    if (total === 25) return { opts: [{ pg: 2, lv: 2 }, { pg: 1, lv: 1 }] };
+    if (total <= 30) {
+      if (el <= 7 && ma <= 7) return { opts: [{ pg: 1, lv: 1 }] };
+      return { opts: [], msg: "PG1 needs AL 7 or better in both English and Mathematics. With this combination, please speak to your primary school or MOE about options. The steps below use G1 for illustration." };
+    }
+    return { opts: [], msg: "This score is above the usual range for posting. Please speak to your primary school or MOE. The steps below use G1 for illustration." };
+  }
+  function renderPosting() {
+    var a = state.al, total = a.EL + a.MTL + a.MA + a.SCI;
+    $("total").textContent = total;
+    var r = postingOptions(total, a.EL, a.MA);
+    var out = $("pgOut"), html = "";
+    if (r.opts.length === 0) {
+      state.base = 1;
+      html = '<div class="warn">' + r.msg + "</div>";
+    } else {
+      if (state.pgChoice >= r.opts.length) state.pgChoice = 0;
+      state.base = r.opts[state.pgChoice].lv;
+      if (r.opts.length > 1) {
+        html += '<p>A score of ' + total + ' can lead to either posting group, depending on the posting exercise. Choose one to follow.</p><div class="chips" id="pgChips">';
+        r.opts.forEach(function (o, i) {
+          html += '<button type="button" class="chip" data-pg="' + i + '" aria-pressed="' + (i === state.pgChoice) + '">PG' + o.pg + "<small>Most subjects at " + lvName(o.lv) + "</small></button>";
+        });
+        html += "</div>";
+      } else {
+        html += '<div class="flow"><span class="tag">PG' + r.opts[0].pg + '</span><span class="arrow">&rarr;</span><span>most subjects start at ' + lvSpan(r.opts[0].lv) + "</span></div>";
+      }
+    }
+    out.innerHTML = html;
+  }
+
+  /* Step 2 */
+  function allowed(k, base, al) {
+    var set = {}; set[base] = true;
+    if (k !== "HUM") {
+      if (base === 2 && al <= 5) set[3] = true;
+      if (base === 1) { if (al <= 5) { set[2] = true; set[3] = true; } else if (al === 6) { set[2] = true; } }
+      if (k === "MTL") {
+        if (base === 3) { if (al === 6) set[2] = true; else if (al >= 7) { set[2] = true; set[1] = true; } }
+        if (base === 2 && al >= 7) set[1] = true;
+      }
+    }
+    return Object.keys(set).map(Number).sort(function (x, y) { return y - x; });
+  }
+  function resetStart() {
+    SUBJ.forEach(function (s) { state.start[s.k] = state.base; state.cur[s.k] = state.base; });
+  }
+  function renderStart() {
+    var html = "";
+    SUBJ.forEach(function (s) {
+      var al = state.al[s.k];
+      var lvls = allowed(s.k, state.base, al);
+      var chips = "";
+      lvls.forEach(function (l) {
+        var rel = l === state.base ? "indicative level" : (l > state.base ? "more demanding" : "less demanding");
+        chips += '<button type="button" class="chip" data-start="' + s.k + '" data-lv="' + l + '" aria-pressed="' + (state.start[s.k] === l) + '">' + lvName(l) + "<small>" + rel + "</small></button>";
+      });
+      var sub;
+      if (s.k === "HUM") sub = "Starts at the same level as most subjects. Options to move up begin in Sec 2, based on aptitude and interest.";
+      else {
+        var more = lvls.filter(function (l) { return l > state.base; }), less = lvls.filter(function (l) { return l < state.base; });
+        var bits = [];
+        if (more.length) bits.push("AL " + al + " allows " + more.map(lvName).join(" or ") + " (more demanding)");
+        if (less.length) bits.push("AL " + al + " allows " + less.map(lvName).join(" or ") + " (less demanding)");
+        sub = bits.length ? bits.join(". ") + "." : "AL " + al + ": no change to the starting level at this point. Levels can still move later.";
+        if (s.k === "MTL" && al <= 2) sub += " AL 1 or 2 also makes your child eligible for Higher Mother Tongue.";
+      }
+      html += '<div class="row"><div class="top"><span class="name">' + s.n + '</span><span class="eyebrow">starts at ' + lvName(state.start[s.k]) + '</span></div><div class="chips">' + chips + '</div><div class="sub">' + sub + "</div></div>";
+    });
+    $("startRows").innerHTML = html;
+  }
+
+  /* Step 3 */
+  function verdict(k) {
+    var m = state.marks[k], l = state.cur[k];
+    if (m >= 75 && l < 3) return { text: m + "% meets the 75% mark. There is an option to offer " + lvName(l + 1) + " from the next semester.", up: true };
+    if (m >= 75 && l === 3) return { text: m + "% is strong, and G3 is already the most demanding level.", up: false };
+    if (l === 1) return { text: m + "% is below 75%, so there is no option to move up now. G1 is the foundation level.", up: false };
+    return { text: m + "% is below 75%, so there is no option to move up now. If the subject is a struggle, the school can discuss a less demanding level.", up: false };
+  }
+  function renderMoves() {
+    var html = "";
+    SUBJ.forEach(function (s) {
+      var v = verdict(s.k), l = state.cur[s.k], st = state.start[s.k];
+      var flow = '<div class="flow"><span class="eyebrow">Started</span>' + lvSpan(st) + '<span class="arrow">&rarr;</span><span class="eyebrow">Now</span>' + lvSpan(l) + "</div>";
+      html += '<div class="row" data-row="' + s.k + '"><div class="top"><span class="name">' + s.n + "</span>" + flow + "</div>" +
+        '<div class="marks"><input type="range" min="30" max="100" step="1" value="' + state.marks[s.k] + '" data-mk="' + s.k + '" aria-label="' + s.n + ' school result"><output class="mono" id="out-' + s.k + '">' + state.marks[s.k] + "%</output></div>" +
+        '<div class="sub" id="v-' + s.k + '">' + v.text + "</div>" +
+        '<div class="btns" id="b-' + s.k + '">' + moveButtons(s.k) + "</div></div>";
+    });
+    $("moveRows").innerHTML = html;
+  }
+  function moveButtons(k) {
+    var v = verdict(k), l = state.cur[k], h = "";
+    if (v.up) h += '<button type="button" class="btn" data-up="' + k + '">Offer ' + lvName(l + 1) + "</button>";
+    if (l > 1) h += '<button type="button" class="btn ghost" data-down="' + k + '">Try ' + lvName(l - 1) + "</button>";
+    return h;
+  }
+
+  /* Step 4 */
+  function humText(l) {
+    return l === 1 ? "Social Studies plus one Humanities Exposure Module (Geography, History or Literature in English)."
+      : "Social Studies plus one elective (Geography, History or Literature in English), or a full Humanities subject.";
+  }
+  function renderUpper() {
+    var html = "";
+    SUBJ.forEach(function (s) {
+      var l = state.cur[s.k];
+      var sub = s.k === "HUM" ? humText(l) : (s.k === "MTL" && state.al.MTL <= 2 ? "Eligible to offer Higher Mother Tongue instead." : "Compulsory");
+      html += '<div class="row"><div class="top"><span class="name">' + s.n + '</span><span class="tag lv-' + l + '">' + lvName(l) + '</span></div><div class="sub">' + sub + "</div></div>";
+    });
+    $("upperRows").innerHTML = html;
+    var eh = "";
+    state.elect.forEach(function (e, i) {
+      var opts = ELECTIVES.map(function (o) { return '<option' + (o === e.s ? " selected" : "") + ">" + o + "</option>"; }).join("");
+      var chips = "";
+      if (e.s !== "None") [3, 2, 1].forEach(function (l) {
+        chips += '<button type="button" class="chip" data-el="' + i + '" data-lv="' + l + '" aria-pressed="' + (e.lv === l) + '">' + lvName(l) + "</button>";
+      });
+      eh += '<div class="row"><label class="field" for="el-' + i + '">Elective ' + (i + 1) + '<select id="el-' + i + '" data-esel="' + i + '">' + opts + '</select></label><div class="chips">' + chips + "</div></div>";
+    });
+    $("electRows").innerHTML = eh;
+  }
+
+  /* Step 5 */
+  function renderPaths() {
+    var g = { 1: 0, 2: 0, 3: 0 };
+    SUBJ.forEach(function (s) { g[state.cur[s.k]]++; });
+    state.elect.forEach(function (e) { if (e.s !== "None") g[e.lv]++; });
+    var total = g[1] + g[2] + g[3], g3 = g[3], g2 = g[2], g1 = g[1];
+    $("counts").innerHTML = '<span class="eyebrow">Your mix of ' + total + ' subjects</span>' +
+      '<span class="tag lv-3">' + g3 + " at G3</span><span class=\"tag lv-2\">" + g2 + " at G2</span><span class=\"tag lv-1\">" + g1 + " at G1</span>";
+    var P = [
+      { n: "Junior College or Millennia Institute", r: "L1R4: JC 16 or lower, MI 20 or lower. Needs 5 G3 subjects.", ok: g3 >= 5,
+        hint: g3 === 4 ? "One more G3 subject would open JC and MI." : "" },
+      { n: "Polytechnic Year 1", r: "ELR2B2: 22 or lower. Needs 4 G3 plus 1 G2 or better.", ok: g3 >= 4 && g3 + g2 >= 5,
+        hint: (g3 >= 4 && g3 + g2 < 5 && g1 >= 1) ? "One of the G1 subjects at G2 would open polytechnic Year 1." : (g3 === 3 && g2 >= 2 ? "One more G3 subject would open polytechnic Year 1." : "") },
+      { n: "Polytechnic Foundation Programme (PFP)", r: "ELMAB3: 12 or lower. Needs 5 subjects at G2 or G3.", ok: g3 + g2 >= 5,
+        hint: (g3 + g2 === 4 && g1 >= 1) ? "One more subject at G2 or better would open PFP." : "" },
+      { n: "ITE Higher Nitec, direct Year 2 entry", r: "ELMAB3: 19 or lower, using G2 grades. Needs 5 subjects at G2 or G3.", ok: g3 + g2 >= 5,
+        hint: (g3 + g2 === 4 && g1 >= 1) ? "One more subject at G2 or better would open this route." : "" },
+      { n: "ITE 3-Year Higher Nitec, Year 1 entry", r: "ITE aggregate from four subjects, with G3 and G2 grades mapped to G1.", ok: total >= 4, hint: "" }
+    ];
+    var html = "";
+    P.forEach(function (p) {
+      html += '<div class="path ' + (p.ok ? "open" : "closed") + '"><span class="pname">' + p.n + '</span><span class="rule">' + p.r + '</span><span class="badge">' + (p.ok ? "Can apply" : "Not with this mix") + "</span>" + (!p.ok && p.hint ? '<div class="hint">' + p.hint + "</div>" : "") + "</div>";
+    });
+    $("pathList").innerHTML = html;
+  }
+
+  function renderFrom(step) {
+    if (step <= 2) renderStart();
+    if (step <= 3) renderMoves();
+    if (step <= 4) renderUpper();
+    renderPaths();
+  }
+
+  /* Events */
+  document.addEventListener("change", function (e) {
+    var t = e.target;
+    if (t.getAttribute("data-al")) {
+      state.al[t.getAttribute("data-al")] = Number(t.value);
+      renderPosting(); resetStart(); renderFrom(2);
+    } else if (t.getAttribute("data-esel") !== null) {
+      var i = Number(t.getAttribute("data-esel")); state.elect[i].s = t.value;
+      renderUpper(); renderPaths();
+    }
+  });
+  document.addEventListener("input", function (e) {
+    var t = e.target, k = t.getAttribute && t.getAttribute("data-mk");
+    if (!k) return;
+    state.marks[k] = Number(t.value);
+    $("out-" + k).textContent = t.value + "%";
+    $("v-" + k).textContent = verdict(k).text;
+    $("b-" + k).innerHTML = moveButtons(k);
+  });
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest ? e.target.closest("button") : null;
+    if (!t) return;
+    var a;
+    if ((a = t.getAttribute("data-pg")) !== null) { state.pgChoice = Number(a); renderPosting(); resetStart(); renderFrom(2); }
+    else if ((a = t.getAttribute("data-start")) !== null) { var l = Number(t.getAttribute("data-lv")); state.start[a] = l; state.cur[a] = l; renderFrom(2); }
+    else if ((a = t.getAttribute("data-up")) !== null) { state.cur[a] = Math.min(3, state.cur[a] + 1); renderFrom(3); }
+    else if ((a = t.getAttribute("data-down")) !== null) { state.cur[a] = Math.max(1, state.cur[a] - 1); renderFrom(3); }
+    else if ((a = t.getAttribute("data-el")) !== null) { state.elect[Number(a)].lv = Number(t.getAttribute("data-lv")); renderUpper(); renderPaths(); }
+    else if (t.id === "resetMoves") { SUBJ.forEach(function (s) { state.cur[s.k] = state.start[s.k]; }); renderFrom(3); }
+  });
+
+  buildALs(); renderPosting(); resetStart(); renderFrom(2);
+})();
+</script>
+
+</body></html>
